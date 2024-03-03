@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: mqtt-client
+
+# Example configuration for logging
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+# Example configuration for database connection
+# Replace with your actual database details
+# datasource:
+#   url: jdbc:mysql://localhost:3306/my_database
+#   username: your_username
+#   password: your_password
+#   driver-class-name: com.mysql.cj.jdbc.Driver
+
+# Example configuration for connecting to an MQTT broker
+# Replace with your actual MQTT broker details
+# mqtt:
+#   broker-url: tcp://localhost:1883
+#   client-id: my-mqtt-client
+#   username: your_username
+#   password: your_password
+
+# Add additional configuration properties as needed
