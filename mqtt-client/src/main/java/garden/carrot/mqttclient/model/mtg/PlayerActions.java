@@ -1,4 +1,4 @@
-package garden.carrot.mqttclient.model;
+package garden.carrot.mqttclient.model.mtg;
 
 public class PlayerActions {
     private TurnManager turnManager;
@@ -37,9 +37,9 @@ public class PlayerActions {
                     // Create or update player with specified attributes
                     Player player = turnManager.getCurrentPlayer(); // For demonstration, assuming current player
                     if (player != null) {
-                        player.setName(playerName);
+                        // player.setName(playerName);
                         player.getPlayerTimer().setTimeLeft(totalTime);
-                        player.setTotalHealth(totalHealth);
+                        // player.setTotalHealth(totalHealth);
                     }
                 }
             }
@@ -67,8 +67,8 @@ public class PlayerActions {
                 }
                 if (playerName != null && totalTime > 0 && totalHealth > 0) {
                     // Create new player with specified attributes
-                    Player player = new Player(playerName, "", totalHealth, totalTime);
-                    turnManager.addPlayer(player);
+                    // Player player = new Player(playerName, "", totalHealth, totalTime);
+                    // turnManager.addPlayer(player);
                 }
             }
         }
