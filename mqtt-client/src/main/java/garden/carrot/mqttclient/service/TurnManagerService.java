@@ -11,20 +11,20 @@ import garden.carrot.mqttclient.repository.mtg.TurnManagerRepository;
 @Service
 public class TurnManagerService {
 
-    private final TurnManagerRepository turnManagerRepository;
+  private final TurnManagerRepository turnManagerRepository;
 
-    @Autowired
-    public TurnManagerService(TurnManagerRepository turnManagerRepository) {
-        this.turnManagerRepository = turnManagerRepository;
-    }
+  @Autowired
+  public TurnManagerService(TurnManagerRepository turnManagerRepository) {
+    this.turnManagerRepository = turnManagerRepository;
+  }
 
-    public TurnManager saveTurnManager(TurnManager turnManager) {
-        return turnManagerRepository.save(turnManager);
-    }
+  public TurnManager saveTurnManager(TurnManager turnManager) {
+    return turnManagerRepository.save(turnManager);
+  }
 
-    public TurnManager getTurnManagerById(UUID id) {
-        return turnManagerRepository.findById(id).orElse(null);
-    }
+  public TurnManager getTurnManagerById(UUID id) {
+    return turnManagerRepository.findById(id).orElse(null);
+  }
 
-    // Add other methods as needed
+  // Add other methods as needed
 }

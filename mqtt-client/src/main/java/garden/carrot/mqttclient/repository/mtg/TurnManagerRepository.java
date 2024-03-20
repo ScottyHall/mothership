@@ -9,5 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface TurnManagerRepository extends MongoRepository<TurnManager, UUID> {
-    // You can add custom methods here if needed
+  // You can add custom methods here if needed
 }

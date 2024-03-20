@@ -10,7 +10,7 @@ import java.util.UUID;
 @Repository
 public interface MothershipUserRepository extends MongoRepository<MothershipUser, UUID> {
 
-    void deleteByName(String name);
+  void deleteByName(String name);
 
-    List<MothershipUser> findByName(String name);
+  List<MothershipUser> findByName(String name);
 }

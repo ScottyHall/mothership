@@ -11,40 +11,39 @@ import java.util.UUID;
 @Service
 public class MothershipUserService {
 
-    private final MothershipUserRepository userRepository;
+  private final MothershipUserRepository userRepository;
 
-    @Autowired
-    public MothershipUserService(MothershipUserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+  @Autowired
+  public MothershipUserService(MothershipUserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
 
-    public List<MothershipUser> getAllUsers() {
-        return userRepository.findAll();
-    }
+  public List<MothershipUser> getAllUsers() {
+    return userRepository.findAll();
+  }
 
-    public MothershipUser getUserById(UUID userId) {
-        return userRepository.findById(userId).orElse(null);
-    }
+  public MothershipUser getUserById(UUID userId) {
+    return userRepository.findById(userId).orElse(null);
+  }
 
-    public List<MothershipUser> getUserByName(String name) {
-        return userRepository.findByName(name);
-    }
+  public List<MothershipUser> getUserByName(String name) {
+    return userRepository.findByName(name);
+  }
 
-    public MothershipUser createUser(MothershipUser user) {
-        System.out.println("USER CREATED TRIGGERED");
-        return userRepository.save(user);
-    }
+  public MothershipUser createUser(MothershipUser user) {
+    return userRepository.save(user);
+  }
 
-    public MothershipUser updateUser(UUID userId, MothershipUser updatedUser) {
-        updatedUser.setUid(userId);
-        return userRepository.save(updatedUser);
-    }
+  public MothershipUser updateUser(UUID userId, MothershipUser updatedUser) {
+    updatedUser.setUid(userId);
+    return userRepository.save(updatedUser);
+  }
 
-    public void deleteUser(UUID uid) {
-        userRepository.deleteById(uid);
-    }
+  public void deleteUser(UUID uid) {
+    userRepository.deleteById(uid);
+  }
 
-    public void deleteUser(String name) {
-        userRepository.deleteByName(name);
-    }
+  public void deleteUser(String name) {
+    userRepository.deleteByName(name);
+  }
 }
