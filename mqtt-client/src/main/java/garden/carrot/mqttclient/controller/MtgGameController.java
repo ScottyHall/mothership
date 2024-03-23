@@ -19,13 +19,18 @@ public class MtgGameController {
   private MtgGameService mtgGameService;
 
   @PostMapping("/join")
-  public int joinGame(@RequestBody UUID uid) {
-    return mtgGameService.joinGame(uid);
+  public int joinGame(@RequestBody String uid) {
+    return mtgGameService.joinGame(UUID.fromString(uid));
   }
 
   @PostMapping("/start")
   public void startGame() {
     mtgGameService.startGame();
+  }
+
+  @PostMapping("/clearGame")
+  public void clearGame() {
+    mtgGameService.clearGame();
   }
 
   @GetMapping("/currentPlayer")
@@ -63,8 +68,8 @@ public class MtgGameController {
   }
 
   @PostMapping("/meNext")
-  public void meNext(@RequestBody UUID playerUid) {
-    mtgGameService.meNext(playerUid);
+  public void meNext(@RequestBody String playerUid) {
+    mtgGameService.meNext(UUID.fromString(playerUid));
   }
 
   @PostMapping("/nextTurn")

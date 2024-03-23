@@ -81,6 +81,9 @@ public class MqttMessageHandler {
     } else if (topic.equals("pausePlayCurrentPlayer")) {
       mtgGameService.pausePlayCurrentPlayer();
       return mtgGameService.getGameStatus();
+    } else if (topic.equals("clearGame")) {
+      mtgGameService.clearGame();
+      return mtgGameService.getGameStatus();
     }
     return null;
     /*
