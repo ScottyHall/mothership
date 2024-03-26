@@ -1,11 +1,16 @@
 package garden.carrot.mqttclient;
 
+import java.util.List;
+
 import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import garden.carrot.mqttclient.model.MothershipUser;
 import garden.carrot.mqttclient.model.mtg.TurnManager;
+import garden.carrot.mqttclient.service.MothershipUserService;
 import garden.carrot.mqttclient.service.MqttMessageHandler;
+import garden.carrot.mqttclient.service.UsersMapper;
 
 import org.springframework.context.ApplicationContext;
 
@@ -16,6 +21,7 @@ public class MqttClientApplication {
 
     MqttClient mqttClient = context.getBean(MqttClient.class);
     MqttMessageHandler mqttMessageHandler = context.getBean(MqttMessageHandler.class);
+    MothershipUserService mothershipUserService = context.getBean(MothershipUserService.class);
 
     try {
       mqttClient.setCallback(new MqttCallback() {
@@ -47,6 +53,16 @@ public class MqttClientApplication {
                 e.printStackTrace();
               }
             }
+          } else if (topicParts[1].equals("users")) {
+            if (topicParts[3].equals("getAllUsers")) {
+              List<MothershipUser> users = mothershipUserService.getAllUsers();
+              String usersJson = UsersMapper.convertUsersToJson(users);
+              try {
+                mqttClient.publish("api/users/p/getAllUsers", new MqttMessage(usersJson.getBytes()));
+              } catch (MqttException e) {
+                e.printStackTrace();
+              }
+            }
           } else {
             try {
               mqttMessageHandler.handleMessage(topic, message);
@@ -62,6 +78,7 @@ public class MqttClientApplication {
         }
       });
 
+      mqttClient.subscribe("api/users/r/#");
       mqttClient.subscribe("api/game/mtg/r/#");
       mqttClient.subscribe("api/mothership/r/#");
       mqttClient.subscribe("api/mothership/v/#");
